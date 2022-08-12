@@ -18,8 +18,11 @@ app.get('/', (req, res) => {
 
     
 })
-//    const usersRoute = require('./routes/users');
-//    app.use('/users', usersRoute);
+   const usersRoute = require('./routes/users');
+   app.use('/users', usersRoute);
+
+   const questionsRoute = require('./routes/questions');
+   app.use('/questions', questionsRoute);
 
 
 //    app.listen(process.env.APP_PORT);
