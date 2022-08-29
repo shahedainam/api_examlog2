@@ -61,20 +61,20 @@ router.delete("/removeuser/:userId", async (req, res) => {
 // http://localhost:4000/users/adduser
 router.post('/adduser', async(req, res) => {
     try {
-        // console.log(req.body);
+        console.log(req.body);
         const tempUserid = 'id'+ parseInt(Math.random()*10000000);
 
-        const response = await db.promise().query(`INSERT INTO users (userid,username,name,email,password,mobile )
+        const response = await db.promise().query(`INSERT INTO users (userid,username,name,email,mobile,password )
           VALUES ('${tempUserid}','${req.body.username}',' ${req.body.name}','${req.body.email}',
-          '${req.body.password}', '${req.body.mobile}')`);
+          '${req.body.mobile}', '${req.body.password}')`);
         
-        const response2 = await db.promise().query(`SELECT userid FROM users WHERE username = '${req.body.username}' `);
-        // console.log(response, response2[0]);
+        const response2 = await db.promise().query(`SELECT * FROM users WHERE username = '${req.body.username}' `);
+        console.log(response, response2[0]);
 
         res.status(201).json(response2[0]);
     } catch(err) {
-        // console.log(err);
-        res.status(400).json(err);
+        console.log(err);
+        res.status(400).json({ message: err.message });
     }
 })
 
@@ -102,6 +102,7 @@ router.post('/login', async(req, res) => {
     } catch(err) {
         // console.log(err);
         res.status(400).json(err);
+
     }
 })
 // http://localhost:4000/users/updateuserpassword

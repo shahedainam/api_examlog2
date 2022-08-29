@@ -24,6 +24,9 @@ app.get('/', (req, res) => {
    const questionsRoute = require('./routes/questions');
    app.use('/questions', questionsRoute);
 
+   const examsRoute = require('./routes/exams');
+   app.use('/exams', examsRoute);
+
 
 //    app.listen(process.env.APP_PORT);
 
